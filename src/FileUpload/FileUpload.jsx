@@ -74,7 +74,7 @@ function FileUpload() {
     formData.append("file", chunk)
 
     const headers = new Headers();
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGEyNjg1YmFlZTIwMzEzNWZkZWJlYTciLCJ1c2VybmFtZSI6ImJoZWxhMTMyMzIiLCJlbWFpbCI6ImJoZWxhMnM0MzIzMjIyQGdtYWlsLmNvbSIsImlhdCI6MTc1NTQ3NDAxMSwiZXhwIjoxNzU1NDg0ODExfQ.G9aGg6F9-tuZjWwg8TPWnwi16q9Mx9ZFsf1gxjTazAk');
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGEyNjg1YmFlZTIwMzEzNWZkZWJlYTciLCJ1c2VybmFtZSI6ImJoZWxhMTMyMzIiLCJlbWFpbCI6ImJoZWxhMnM0MzIzMjIyQGdtYWlsLmNvbSIsImlhdCI6MTc1NTc5MjU0NiwiZXhwIjoxNzU1ODAzMzQ2fQ.Z7yB0a-dZbjDg5dLi9ETJgUTuYPKtO8K_2HjjaBAuHo');
     const options = {
       method: 'POST',
       headers: headers,
@@ -86,6 +86,7 @@ function FileUpload() {
       setProcesing(true)
       setIsUploading(false)
     }
+    
 
     //make sure send other data before chunk file
     const data = await fetch('http://127.0.0.1:3000/uploadVideo', options)

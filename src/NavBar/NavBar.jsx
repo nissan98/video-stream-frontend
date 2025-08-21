@@ -36,7 +36,7 @@ export default function Navbar() {
             Upload
             <span className="block h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
           </a>
-          <a  className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg relative group" >
+          <a  className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg relative group" onClick={handleExplore}>
             Explore
             <span className="block h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
           </a>
