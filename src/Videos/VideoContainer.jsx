@@ -118,21 +118,13 @@ function VideoCard({ video }) {
 
 export default function VideoContainer() {
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
-      <Navbar />
+    <div className="w-full min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 relative">
+      <div className='sticky top-0 z-50 '>
+        <Navbar />
+      </div>
       <div className="max-w-7xl mx-auto px-2 sm:px-4 py-6">
-        {/* Simulated YT-style filter bar */}
-        <div className="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-thin scrollbar-thumb-blue-900 scrollbar-track-transparent">
-          {["All", "Nature", "City", "Adventure", "Relax", "Travel", "Popular", "Recent"].map((cat, i) => (
-            <button
-              key={cat}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold border border-blue-700 bg-gray-800 text-blue-200 hover:bg-blue-700 hover:text-white transition ${i === 0 ? "bg-blue-700 text-white" : ""}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-7 gap-y-10">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-7 gap-y-10 z-0 relative mt-10">
           {videos.map(video => (
             <VideoCard key={video.id} video={video} />
           ))}

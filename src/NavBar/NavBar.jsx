@@ -12,8 +12,12 @@ export default function Navbar() {
     setMenuOpen(false)
     navigator('/')
   }
+  const handleExplore = () => {
+    console.log("hello")
+    navigator("/videos")
+  }
   return (
-    <nav className="w-full bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950/90 border-b border-gray-800 shadow-xl backdrop-blur-md z-50 select-none">
+    <nav className="w-full bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950/90 border-b border-gray-800 shadow-xl backdrop-blur-md  relative z-50 ">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
         {/* Logo */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={handleHome}>
@@ -24,7 +28,7 @@ export default function Navbar() {
         </div>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="/" className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg relative group" onClick={handleHome}>
+          <a  className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg relative group" onClick={handleHome}>
             Home
             <span className="block h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
           </a>
@@ -32,7 +36,7 @@ export default function Navbar() {
             Upload
             <span className="block h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
           </a>
-          <a href="#" className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg relative group">
+          <a  className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg relative group" >
             Explore
             <span className="block h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
           </a>
@@ -61,7 +65,7 @@ export default function Navbar() {
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-gray-950/95 border-t border-gray-800 shadow-xl flex flex-col items-center gap-4 py-6 z-50 md:hidden animate-fade-in">
             <a
-              href="/"
+              
               className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg"
               onClick={handleHome}
             >
@@ -74,8 +78,8 @@ export default function Navbar() {
               Upload
             </a>
             <a
-              href="#"
-              className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg"
+              
+              className="text-gray-300 hover:text-blue-400 transition font-semibold text-lg" onClick={handleExplore}
             >
               Explore
             </a>

@@ -22,11 +22,19 @@ function FileUpload() {
     try {
       if (isUploading || proceesing) return
       if (!title) {
-        toast.info("title is required")
+        toast.info("title is required", {
+          onClose: () => {
+            clearToastWaitingQueue()
+          }
+        })
         return
       }
       if (!count) {
-        toast.info("select a file to upload")
+        toast.info("select a file to upload", {
+          onClose: () => {
+            clearToastWaitingQueue()
+          }
+        })
         return
       }
       setIsUploading(true)
@@ -44,8 +52,15 @@ function FileUpload() {
       await uploadChunk(count, last, count.size - last, chunk_count, true, destination, true)
     } catch (e) {
       resetState()
-      toast.error(e.message)
+      toast.error(e.message, {
+        onClose: () => {
+          clearToastWaitingQueue()
+        }
+      })
     }
+  }
+  const clearToastWaitingQueue = () => {
+    toast.clearWaitingQueue()
   }
 
   const uploadChunk = async (file, last, MAX_SIZE, current_chunk, end, destination, isEnd = false) => {
@@ -86,7 +101,11 @@ function FileUpload() {
     }
 
     if (json.status === 200) {
-      toast.success("Video uploaded successfully")
+      toast.success("Video uploaded successfully", {
+        onClose: () => {
+          clearToastWaitingQueue()
+        }
+      })
       resetState()
     }
   }
@@ -103,7 +122,9 @@ function FileUpload() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-x-hidden overflow-y-auto">
-      <Navbar />
+      <div className='sticky top-0 z-100 '>
+        <Navbar />
+      </div>
       <div className="flex items-center justify-center min-h-[90vh] py-10 px-2 sm:px-4 select-none">
         <div className="w-full max-w-md bg-gray-900/95 rounded-3xl shadow-2xl p-4 sm:p-8 flex flex-col items-center gap-6 sm:gap-7 border border-gray-800 relative z-10">
           <div className="absolute -top-8 left-1/2 -translate-x-1/2">
@@ -144,11 +165,10 @@ function FileUpload() {
           </label>
           <button
             onClick={upload}
-            className={`w-full py-2 rounded-xl font-bold text-lg shadow transition-all duration-200 ${
-              isUploading || proceesing
-                ? "bg-blue-900 text-blue-400 cursor-not-allowed"
-                : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white"
-            }`}
+            className={`w-full py-2 rounded-xl font-bold text-lg shadow transition-all duration-200 ${isUploading || proceesing
+              ? "bg-blue-900 text-blue-400 cursor-not-allowed"
+              : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white"
+              }`}
             disabled={isUploading || proceesing}
           >
             {isUploading ? "Uploading..." : proceesing ? "Processing..." : "Upload"}
@@ -185,6 +205,7 @@ function FileUpload() {
           pauseOnHover={false}
           transition={Bounce}
           progressClassName={"progress-bar"}
+          limit={1}
         />
       </div>
       {/* Decorative blurred circles for background */}
